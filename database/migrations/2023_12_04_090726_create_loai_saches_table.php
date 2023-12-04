@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loai_saches', function (Blueprint $table) {
+        Schema::create('loaisach', function (Blueprint $table) {
             $table->id();
+            $table->string('tenloai');
+            $table->string('tenloai_slug');
             $table->timestamps();
+            $table->engine = 'InnoDB';// Đặt engine là InnoDB cho bảng
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loai_saches');
+        Schema::dropIfExists('loaisach');
     }
 };

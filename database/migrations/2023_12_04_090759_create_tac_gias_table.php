@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tac_gias', function (Blueprint $table) {
+        Schema::create('tacgia', function (Blueprint $table) {
             $table->id();
+            $table->string('tentacgia'); // Tên tác giả
+            $table->text('tieusu')->nullable(); // Tiểu sử tác giả có thể để trống
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tac_gias');
+        Schema::dropIfExists('tacgia');
     }
 };

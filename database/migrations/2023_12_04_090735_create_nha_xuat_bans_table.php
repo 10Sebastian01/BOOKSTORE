@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nha_xuat_bans', function (Blueprint $table) {
+        Schema::create('nhaxuatban', function (Blueprint $table) {
             $table->id();
+            $table->string('tennxb'); // Tên nhà xuất bản
+            $table->string('tennxb_slug');
+            $table->string('hinhanh');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nha_xuat_bans');
+        Schema::dropIfExists('nhaxuatban');
     }
 };

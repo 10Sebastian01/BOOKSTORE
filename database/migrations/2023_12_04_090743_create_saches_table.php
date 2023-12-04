@@ -11,9 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('saches', function (Blueprint $table) {
+        Schema::create('sach', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('danhmuc_id')->constrained('danhmuc');
+            $table->foreignId('nhaxuatban_id')->constrained('nxb');
+            $table->string('tieudesach');
+            $table->string('tieudesach_slug');
+            $table->foreignId('tacgia_id')->constrained('tacgia');
+            $table->string('mota')->nullable() ;
+            $table->float('giasach');
+            $table->float('giasale')->nullable();
+            $table->string('trangthai');
+            $table->integer('soluong');
+            $table->string('hinhanh')->nullable() ;
             $table->timestamps();
+            $table->engine = 'InnoDB';// Đặt engine là InnoDB cho bảng sách
         });
     }
 
@@ -22,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('saches');
+        Schema::dropIfExists('sach');
     }
 };

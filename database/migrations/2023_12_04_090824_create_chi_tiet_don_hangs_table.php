@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chi_tiet_don_hangs', function (Blueprint $table) {
+        Schema::create('chitietdonhang', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('donhang_id')->constrained('donhang');
+            $table->foreignId('sach_id')->constrained('sach');
+            $table->integer('soluong');
+            $table->float('giasanpham');
+            $table->float('thanhtien');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chi_tiet_don_hangs');
+        Schema::dropIfExists('chitietdonhang');
     }
 };
