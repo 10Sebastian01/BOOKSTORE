@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('sach', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('danhmuc_id')->constrained('danhmuc');
-            $table->foreignId('nhaxuatban_id')->constrained('nxb');
+            $table->foreignId('loaisach_id')->constrained('loaisach');
+            $table->foreignId('nhaxuatban_id')->constrained('nhaxuatban');
             $table->string('tieudesach');
             $table->string('tieudesach_slug');
             $table->foreignId('tacgia_id')->constrained('tacgia');

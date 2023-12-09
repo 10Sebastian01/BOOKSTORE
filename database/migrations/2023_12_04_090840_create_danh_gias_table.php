@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('giohang', function (Blueprint $table) {
+        Schema::create('danhgia', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user');
+            $table->foreignId('user_id')->constrained('users'); // Khóa ngoại tới bảng User
             $table->foreignId('sach_id')->constrained('sach');
-            $table->integer('soluong');
+            $table->integer('diemdanhgia'); // Điểm đánh giá
+            $table->text('nhanxet'); // Nhận xét đánh giá
+            $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('giohang');
+        Schema::dropIfExists('danhgia');
     }
 };

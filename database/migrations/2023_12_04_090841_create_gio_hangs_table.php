@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donhang', function (Blueprint $table) {
+        Schema::create('giohang', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->float('tongtien');
-            $table->foreignId('tinhtrang_id')->constrained('tinhtrang');
-            $table->string('dienthoaigiaohang');
-            $table->string('diachi');
-            $table->timestamps();
+            $table->foreignId('user')->constrained('users');
+            $table->foreignId('sach_id')->constrained('sach');
+            $table->integer('soluong');
             $table->engine = 'InnoDB';
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donhang');
+        Schema::dropIfExists('giohang');
     }
 };

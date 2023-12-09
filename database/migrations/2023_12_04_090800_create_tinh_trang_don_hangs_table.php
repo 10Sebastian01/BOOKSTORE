@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('danhgia', function (Blueprint $table) {
+        Schema::create('tinhtrang', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user'); // Khóa ngoại tới bảng User
-            $table->foreignId('sach_id')->constrained('sach');
-            $table->integer('diemdanhgia'); // Điểm đánh giá
-            $table->text('nhanxet'); // Nhận xét đánh giá
+            $table->string('tinhtrang');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('danhgia');
+        Schema::dropIfExists('tinhtrang');
     }
 };
