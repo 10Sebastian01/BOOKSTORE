@@ -9,18 +9,30 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+<<<<<<< HEAD
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ asset('public/vendor/font-awesome/css/all.min.css') }}" />
 
+=======
+>>>>>>> d45184288204cb4c013aa43ad8f5fc8a4e24783f
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+<<<<<<< HEAD
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 @yield('javascript')
+=======
+    <!-- script-->
+    <script src = http://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js></script>
+    <!--CSS-->
+    <link rel = //cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css/>
+    <link rel="stylesheet" href="{{ asset('public/vendor/font-awesome/css/all.min.css') }}" />
+    
+>>>>>>> d45184288204cb4c013aa43ad8f5fc8a4e24783f
 </head>
 <body>
     <div id="app">
@@ -36,6 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+<<<<<<< HEAD
                         <nav class="mt-2">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                                 <!-- Add icons to the links using the .nav-icon class
@@ -83,6 +96,9 @@
                                 </li>
                             </ul>
                         </nav>
+=======
+
+>>>>>>> d45184288204cb4c013aa43ad8f5fc8a4e24783f
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -127,8 +143,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+<<<<<<< HEAD
         <hr class="shadow-sm" />
         <footer>Bản quyền &copy; {{ date('Y') }} bởi {{ config('app.name', 'Laravel') }}.</footer>
+=======
+>>>>>>> d45184288204cb4c013aa43ad8f5fc8a4e24783f
     </div>
 </body>
 </html>
