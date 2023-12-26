@@ -4,62 +4,45 @@ namespace App\Http\Controllers;
 
 use App\Models\LoaiSach;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LoaiSachController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function getLists()
     {
-        //
+        $loaisach = LoaiSach::all();
+        return view('loaisach.danhsach', compact('loaisach'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function getAdd()
     {
-        //
+        return view('loaisach.them');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function postAdd(Request $request)
     {
-        //
+        $orm = new LoaiSach();
+        $orm->tenloai = $request->tenloai;
+        $orm->tenloai_slug = Str::slug($request->tenloai, '-');
+        $orm->save();
+        return redirect()->route('loaisach');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(LoaiSach $loaiSach)
+    public function getEdit($id)
     {
-        //
+        $loaisach = LoaiSach::find($id);
+        return view('loaisach.sua', compact('loaisach'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(LoaiSach $loaiSach)
+    public function postEdit(Request $request, $id)
     {
-        //
+        $orm = LoaiSach::find($id);
+        $orm->tenloai = $request->tenloai;
+        $orm->tenloai_slug = Str::slug($request->tenloai, '-');
+        $orm->save();
+        return redirect()->route('loaisach');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, LoaiSach $loaiSach)
+    public function getDelete($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(LoaiSach $loaiSach)
-    {
-        //
+        $orm = LoaiSach::find($id);
+        $orm->delete();
+        return redirect()->route('loaisach');
     }
 }

@@ -7,59 +7,74 @@ use Illuminate\Http\Request;
 
 class GioHangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    /*public function getCart()
     {
-        //
+        if(Cart::count() > 0)
+            return view('frontend.giohang');
+        else
+            return view('frontend.giohangrong');
+        return view('frontend.giohang');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function getCart_Add($tensanpham_slug = '')
     {
-        //
+        $sanpham = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
+
+        Cart::add([
+            'id' => $sanpham->id,
+            'name' => $sanpham->tensanpham,
+            'price' => $sanpham->dongia,
+            'qty' => 1,
+            'weight' => 0,
+            'options' => [
+                'image' => $sanpham->hinhanh
+            ]
+        ]);
+
+        return redirect()->route('frontend.home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function getCart_Add($row_id)
     {
-        //
+        Cart::remove($row_id);
+        return redirect()->route('frontend.giohang');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(GioHang $gioHang)
+    public function getCart_Decrease($row_id)
     {
-        //
+        $row = Cart::get($row_id);
+
+        // Nếu số lượng là 1 thì không giảm được nữa
+        if($row->qty > 1)
+        {
+            Cart::update($row_id, $row->qty - 1);
+        }
+        return redirect()->route('frontend.giohang');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(GioHang $gioHang)
+    public function getCart_Increase($row_id)
     {
-        //
+        $row = Cart::get($row_id);
+
+        // Không được tăng vượt quá 10 sản phẩm
+        if($row->qty < 10)
+        {
+            Cart::update($row_id, $row->qty + 1);
+        }
+        return redirect()->route('frontend.giohang');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, GioHang $gioHang)
+    public function postCart_Update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(GioHang $gioHang)
-    {
-        //
-    }
+        foreach($request->qty as $row_id => $quantity)
+        {
+            if($quantity <= 0)
+                Cart::update($row_id, 1);
+            else if($quantity > 10)
+                Cart::update($row_id, 10);
+            else
+                Cart::update($row_id, $quantity);
+        }
+        return redirect()->route('frontend.giohang');
+    }*/
 }

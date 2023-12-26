@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class NhaXuatBan extends Model
 {
+    protected $table = 'nhaxuatban';
+    public function Sach():HasMany
+    {
+        return $this->hasMany(Sach::class, 'nhaxuatban_id', 'id');
+    }
     use HasFactory;
 }

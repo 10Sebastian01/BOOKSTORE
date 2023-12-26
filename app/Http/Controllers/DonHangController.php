@@ -7,59 +7,28 @@ use Illuminate\Http\Request;
 
 class DonHangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function getLists()
     {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function getAdd()
     {
-        //
+
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(DonHang $donHang)
+    public function postAdd()
     {
-        //
+
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DonHang $donHang)
+    public function getEdit()
     {
-        //
+
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, DonHang $donHang)
+    public function postEdit()
     {
-        //
+
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(DonHang $donHang)
+    public function getDelete()
     {
-        //
+
     }
 }

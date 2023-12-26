@@ -7,59 +7,59 @@ use Illuminate\Http\Request;
 
 class TinhTrangDonHangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function getLists()
     {
-        //
+        $tinhtrang = TinhTrang::all();
+        return view('admin.tinhtrang.danhsach', compact('tinhtrang'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function getAdd()
     {
-        //
+        return view('admin.tinhtrang.them');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function postAdd(Request $request)
     {
-        //
+        // Kiểm tra
+        $request->validate([
+            'tinhtrang' => ['required', 'string', 'max:191', 'unique:tinhtrang'],
+        ]);
+
+        $orm = new TinhTrang();
+        $orm->tinhtrang = $request->tinhtrang;
+        $orm->save();
+
+        // Sau khi thêm thành công thì tự động chuyển về trang danh sách
+        return redirect()->route('admin.tinhtrang');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TinhTrangDonHang $tinhTrangDonHang)
+    public function getEdit($id)
     {
-        //
+        $tinhtrang = TinhTrang::find($id);
+        return view('admin.tinhtrang.sua', compact('tinhtrang'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TinhTrangDonHang $tinhTrangDonHang)
+    public function postEdit(Request $request, $id)
     {
-        //
+        // Kiểm tra
+        $request->validate([
+            'tinhtrang' => ['required', 'string', 'max:191', 'unique:tinhtrang,tinhtrang,' . $id],
+        ]);
+
+        $orm = TinhTrang::find($id);
+        $orm->tinhtrang = $request->tinhtrang;
+        $orm->save();
+
+        // Sau khi sửa thành công thì tự động chuyển về trang danh sách
+        return redirect()->route('admin.tinhtrang');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TinhTrangDonHang $tinhTrangDonHang)
+    public function getDelete($id)
     {
-        //
-    }
+        $orm = TinhTrang::find($id);
+        $orm->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TinhTrangDonHang $tinhTrangDonHang)
-    {
-        //
+        // Sau khi xóa thành công thì tự động chuyển về trang danh sách
+        return redirect()->route('admin.tinhtrang');
     }
 }
