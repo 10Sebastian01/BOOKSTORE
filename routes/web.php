@@ -1,25 +1,26 @@
 <?php
 
-use App\Models\DanhGia;
+use App\Http\Controllers\DanhGiaController;
+use App\Http\Controllers\ChiTietDonHangController;
+use App\Http\Controllers\DonHangController;
+use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\LoaiSachController;
+use App\Http\Controllers\NhaXuatBanController;
+use App\Http\Controllers\SachController;
+use App\Http\Controllers\TacGiaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TinhTrangDonHangController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-<<<<<<< HEAD
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
 Auth::routes();
 
 //Trang chủ
 Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
 Route::get('/home', [HomeController::class, 'getHome'])->name('frontend');
 
-//Quản lý loại sách 
+//Quản lý loại sách
 Route::get('/loaisach', [LoaiSachController::class, 'getLists'])->name('loaisach');
 Route::get('/loaisach/them', [LoaiSachController::class, 'getAdd'])->name('loaisach.them');
 Route::post('/loaisach/them', [LoaiSachController::class, 'postAdd'])->name('loaisach.them');
@@ -66,7 +67,7 @@ Route::get('/danhgia/them', [DanhGiaController::class, 'getAdd'])->name('danhgia
 Route::post('/danhgia/them', [DanhGiaController::class, 'postAdd'])->name('danhgia.them');
 Route::get('/danhgia/sua/{id}', [DanhGiaController::class, 'getEdit'])->name('danhgia.sua');
 Route::post('/danhgia/sua/{id}', [DanhGiaController::class, 'postEdit'])->name('danhgia.sua');
-Route::get('/danhgia/xoa/{id}', [DanhGiaController::class, 'getDelete'])->name('danhgia.xoa'); 
+Route::get('/danhgia/xoa/{id}', [DanhGiaController::class, 'getDelete'])->name('danhgia.xoa');
 
 //Quản lý tác giả
 Route::get('/tacgia', [TacGiaController::class, 'getLists'])->name('tacgia');
@@ -83,4 +84,4 @@ Route::post('/nguoidung/them', [UserController::class, 'postAdd'])->name('nguoid
 Route::get('/nguoidung/sua/{id}', [UserController::class, 'getEdit'])->name('nguoidung.sua');
 Route::post('/nguoidung/sua/{id}', [UserController::class, 'postEdit'])->name('nguoidung.sua');
 Route::get('/nguoidung/xoa/{id}', [UserController::class, 'getDelete'])->name('nguoidung.xoa');
->>>>>>> d45184288204cb4c013aa43ad8f5fc8a4e24783f
+
